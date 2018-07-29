@@ -23,9 +23,13 @@ public class ContractProcessorFactory {
 
 
     private String getProperty(String propertyName) throws IOException {
-        InputStream input = new FileInputStream("E:\\work\\projects\\contractProcessor\\contractProcessor\\src\\main\\resources\\contract_process.properties");
-        Properties properties = new Properties();
-        properties.load(input);
-        return properties.getProperty(propertyName);
+
+//        String resourceName = "contract_process.properties";
+//        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+//        Properties props = new Properties();
+//        try(InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
+//            props.load(resourceStream);}
+
+        return PropertyUtil.getProperty(propertyName);
     }
 }
