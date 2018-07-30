@@ -1,34 +1,40 @@
 package com.mohammadreza_mirali.contractProcessor.com;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
-
+/**
+ * This class implements Factory pattern, we use this pattern to create new instance of our class dynamically from a propety file
+ * this class is Singletone
+ */
 public class ContractProcessorFactory {
+    /**
+     * making Singletone
+     */
     private static final ContractProcessorFactory instance = new ContractProcessorFactory();
     private ContractProcessorFactory() {
     }
 
+    /**
+     *
+     * @return valid instance of this class
+     */
     public static ContractProcessorFactory getInstance()
     {
         return instance;
     }
 
-    public ContractProcessorProxyInt createProcessContract(String type) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public ContractProcessorStrategyInt createProcessContract(String type) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
 
-        return (ContractProcessorProxyInt) Class.forName(getProperty(type)).newInstance();
+        return (ContractProcessorStrategyInt) Class.forName(getProperty(type)).newInstance();
     }
 
-
+    /**
+     *
+     * @param propertyName is name of the property
+     * @return value of the property
+     * @throws IOException may be happened
+     */
     private String getProperty(String propertyName) throws IOException {
-
-//        String resourceName = "contract_process.properties";
-//        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-//        Properties props = new Properties();
-//        try(InputStream resourceStream = loader.getResourceAsStream(resourceName)) {
-//            props.load(resourceStream);}
 
         return PropertyUtil.getProperty(propertyName);
     }

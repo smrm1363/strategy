@@ -1,6 +1,12 @@
 package com.mohammadreza_mirali.contractProcessor.com;
 
-public class ElectricityContract implements ContractProcessorProxyInt {
+/**
+ * strategy is ElectricityContract
+ */
+public class ElectricityContract implements ContractProcessorStrategyInt {
+    /**
+     * logic of the strategy
+     */
     @Override
     public void processContract() {
         System.out.println("Processed electricity");
